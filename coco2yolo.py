@@ -10,8 +10,8 @@ from tqdm import tqdm
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--json_path', default='/root/autodl-tmp/SD/dataset/xls/train.json',type=str, help="input: coco format(json)")
-parser.add_argument('--save_path', default='/root/autodl-tmp/SD/dataset/train_update', type=str, help="specify where to save the output dir of labels")
+parser.add_argument('--json_path', default='图片对应根路径',type=str, help="input: coco format(json)")
+parser.add_argument('--save_path', default='标签存储的路径', type=str, help="specify where to save the output dir of labels")
 arg = parser.parse_args()
 
 def convert(size, box):
@@ -44,7 +44,7 @@ if __name__ == '__main__':
             id_map[category['id']] = i
     print(id_map)
     for img in tqdm(data['images']):
-        filename = img["file_path"].split('/')[1]
+        filename = img["file_name"]
         img_width = img["width"]
         img_height = img["height"]
         img_id = img["id"]
